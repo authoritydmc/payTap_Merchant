@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class WritePrice extends AppCompatActivity {
     public static String TOTAL_AMOUNT_TO_WRITE="amount_total_write";
     private String VENDOR_NAME="PAYTAP ";
-    private String VENDORD_ID="8182835372";
+    private String VENDORD_ID="VEN4578";
 private TextView dataTxtView;
 
     @Override
