@@ -32,6 +32,8 @@ import java.util.HashMap;
 
 /* this project is brought to by Nikmaa TEAM*/
 
+//this is added BY RAj dubey
+
 public class MainActivity extends AppCompatActivity {
 //<<<<<<< master
     private static final int MY_REQUEST_CODE_CAMERA = 9;
