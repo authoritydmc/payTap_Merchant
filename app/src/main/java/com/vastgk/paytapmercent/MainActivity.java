@@ -28,21 +28,14 @@ import java.util.HashMap;
 
 
 
-////======================================== rohan kumar =============================================================
-
-/* this project is brought to by Nikmaa TEAM*/
-
-//this is added BY RAj dubey
 
 public class MainActivity extends AppCompatActivity {
-
     private static final int MY_REQUEST_CODE_CAMERA = 9;
     private static  double TOTAL_PRICE = 0.0;
-    //added TOTAL_PRICE variable @beast
+
     HashMap<String, Double> ItemMap_Price = new HashMap<>();
     HashMap<String, Integer> ItemMap_Quan = new HashMap<>();
     private final int CODE_SCAN = 7;
-
 
     private static final String TAG = "RAAJ";
     Random random = new Random();
@@ -57,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         itemView = findViewById(R.id.lstViewItems);
         DetailsTxtView = findViewById(R.id.txtView_DetailsItem);
-//        scanCode = findViewById(R.id.Btn_ScanCode);
-//        writePrice = findViewById(R.id.Btn_writePrice);
+
         bottomNavigationView = findViewById(R.id.bottomnavigation);
 
         //bottom Navigation ----------RK-------------
@@ -69,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId())
                 {
-                    case R.id.activity_main_bottomnavigation_bank:
-                        intent = new Intent(MainActivity.this,ActivityBank.class);
-                        break;
+
                     case R.id.activity_main_bottomnavigation_scanner:
                         scan();
                         break;
@@ -87,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void write() {
-        Toast.makeText(MainActivity.this, "To be Implemented ", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this,WritePrice.class).putExtra(WritePrice.TOTAL_AMOUNT_TO_WRITE,TOTAL_PRICE));
     }
 
     private void scan() {
@@ -108,18 +98,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-//         writePrice.setOnClickListener(new View.OnClickListener() {
-//             @Override
-//             public void onClick(View v) {
-//                 Toast.makeText(MainActivity.this,"To be Implemented ",Toast.LENGTH_SHORT).show();
-//            startActivity( new Intent(MainActivity.this,WritePrice.class).putExtra(WritePrice.TOTAL_AMOUNT_TO_WRITE,TOTAL_PRICE));
-//             }
-//         });
-
-
-
-
-    // get the barcode reader instance
 
     void Refreshdata() {
         ArrayList<String> details = new ArrayList<>();
