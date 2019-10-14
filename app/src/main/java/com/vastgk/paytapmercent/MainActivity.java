@@ -26,7 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/* this project is brought to by Nikmaa TEAM*/
 public class MainActivity extends AppCompatActivity {
 //<<<<<<< master
     private static final int MY_REQUEST_CODE_CAMERA = 9;
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 //             }
 //         });
 
-    }
+
 
 
     // get the barcode reader instance
