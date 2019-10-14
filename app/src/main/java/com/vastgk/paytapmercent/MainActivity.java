@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId())
                 {
+                    case R.id.activity_main_bottomnavigation_bank:
+                        intent = new Intent(MainActivity.this,ActivityBank.class);
+                        break;
                     case R.id.activity_main_bottomnavigation_scanner:
                         scan();
                         break;
