@@ -30,6 +30,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 //<<<<<<< master
     private static final int MY_REQUEST_CODE_CAMERA = 9;
+    private int thisisbefaltu=9;
     private static  double TOTAL_PRICE = 0.0;
     //added TOTAL_PRICE variable @beast
     HashMap<String, Double> ItemMap_Price = new HashMap<>();
