@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.activity_main_bottomnavigation_nfc:
                         write();
-                        Toast.makeText(MainActivity.this, "Yet To Be Implemented", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return true;

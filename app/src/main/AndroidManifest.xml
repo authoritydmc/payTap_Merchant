@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".WritePrice" />
+        <activity android:name=".WritePrice"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Scan" />
 
         <activity android:name=".MainActivity">
