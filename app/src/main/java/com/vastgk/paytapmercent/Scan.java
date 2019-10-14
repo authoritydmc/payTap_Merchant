@@ -24,16 +24,13 @@ import com.google.zxing.Result;
 
 public class Scan extends AppCompatActivity {
     private CodeScanner mCodeScanner;
-private final int MY_REQUEST_CODE_CAMERA=9;
+    private final int MY_REQUEST_CODE_CAMERA=9;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
             RUNSCAN();
-
-
-
 
     }
 

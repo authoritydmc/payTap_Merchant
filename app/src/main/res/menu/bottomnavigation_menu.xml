@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/activity_main_bottomnavigation_bank"
+        android:icon="@drawable/ic_account_balance_black_24dp"
+        android:title="Bank"/>
+
+    <item
+        android:id="@+id/activity_main_bottomnavigation_scanner"
+        android:icon="@drawable/ic_scan_24dp"
+        android:title="Scan" />
+
+    <item
+        android:id="@+id/activity_main_bottomnavigation_nfc"
+        android:icon="@drawable/ic_nfc_24dp"
+        android:title="NFC" />
+</menu>
