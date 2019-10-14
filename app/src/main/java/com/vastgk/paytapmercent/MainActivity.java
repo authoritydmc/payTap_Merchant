@@ -30,6 +30,8 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 //<<<<<<< master
     private static final int MY_REQUEST_CODE_CAMERA = 9;
+    private static  double TOTAL_PRICE = 0.0;
+    //added TOTAL_PRICE variable @beast
     HashMap<String, Double> ItemMap_Price = new HashMap<>();
     HashMap<String, Integer> ItemMap_Quan = new HashMap<>();
     private final int CODE_SCAN = 7;
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-        });
+
 
 //         writePrice.setOnClickListener(new View.OnClickListener() {
 //             @Override
