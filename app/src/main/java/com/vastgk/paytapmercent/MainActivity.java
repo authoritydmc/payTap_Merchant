@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void write() {
-        Toast.makeText(MainActivity.this, "To be Implemented ", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this,WritePrice.class).putExtra(WritePrice.TOTAL_AMOUNT_TO_WRITE,TOTAL_PRICE));
     }
 
     private void scan() {
