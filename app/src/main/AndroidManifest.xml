@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".WritePrice"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat"/>
         <activity android:name=".Scan" />
 
         <activity android:name=".MainActivity">
