@@ -18,7 +18,7 @@ private TextView dataTxtView;
         setContentView(R.layout.activity_write_price);
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dataTxtView=findViewById(R.id.write_nfc_data_txtView);
-        String data_to_written= String.format("Vendor Name:%s| VENDOR ID=%s|AMOUNT=%s|CUST_ID=%s", VENDOR_NAME, VENDORD_ID, String.valueOf(getIntent().getDoubleExtra(TOTAL_AMOUNT_TO_WRITE,0.0)),"124578");
+        String data_to_written= String.format("Vendor Name:%s| VENDOR ID=%s|AMOUNT=%s|CUST_ID=%s", VENDOR_NAME, VENDORD_ID, getIntent().getStringExtra(TOTAL_AMOUNT_TO_WRITE),"124578");
 
         dataTxtView.setText(data_to_written);
 
