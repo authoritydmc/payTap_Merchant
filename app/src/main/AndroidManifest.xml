@@ -16,7 +16,7 @@
 
         <activity android:name=".WritePrice"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat"/>
+            android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".Scan" />
 
         <activity android:name=".MainActivity">
