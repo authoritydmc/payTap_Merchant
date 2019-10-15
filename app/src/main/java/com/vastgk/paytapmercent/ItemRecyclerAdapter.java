@@ -7,11 +7,15 @@ import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,57 +43,63 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
        final ItemDetails i=items.get(position);
-        holder.itemName.setText("Item:"+i.getItemName());
-        holder.itemPrice.setText("Price:"+i.getItemPrice()+"x"+i.getItemQuantity()+"="+String.format("%.2f",i.getItemQuantity()*Float.valueOf(i.getItemPrice())));
-        holder.itmCode.setText("itemCode:"+i.getItemCode());
-        holder.itemQuantity.setText("QTY:"+items.get(position).getItemQuantity());
-        holder.CardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Dialog dialog=new Dialog(mcontext);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialogue_cardview);
-                dialog.setCancelable(true);
-                final EditText editQty=dialog.findViewById(R.id.dialog_qty_editText);
-                final TextView del=dialog.findViewById(R.id.dialog_delete);
-                del.setText("Delete "+i.getItemCode());
-                //editQty.setText(i.getItemQuantity());
-                del.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(mcontext, "Deleted"+i.getItemCode(), Toast.LENGTH_SHORT).show();
-                        ((MainActivity)mcontext).DeleteItem(i.getItemCode());
-dialog.dismiss();
-
-                    }
-                });
-                editQty.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-/// get the QTY here
-                        String qty=editQty.getText().toString();
-                        ((MainActivity)mcontext).ChangeQty(i.getItemCode(),Integer.parseInt(qty));
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-                //dialogue end
+        holder.itemName.setText(String.format("Item:%25s",i.getItemName()));
+        holder.itemPrice.setText("Price:\u20B9"+i.getItemPrice()+"x"+i.getItemQuantity()+"=\u20B9"+String.format("%.2f",i.getItemQuantity()*Float.valueOf(i.getItemPrice())));
+        holder.itmCode.setText(String.format("ItemCode:%16s",i.getItemCode()));
+        holder.itemQuantity.setText(" QTY:"+items.get(position).getItemQuantity());
+       holder.ContextBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               PopupMenu menu=new PopupMenu(mcontext,holder.ContextBtn);
+               menu.inflate(R.menu.context_menu_cardview);
+               menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                   @Override
+                   public boolean onMenuItemClick(MenuItem item) {
+                       switch (item.getItemId())
+                       {
+                           case R.id.cardview_menu_delete:
+                               Toast.makeText(mcontext, "Deleted "+i.getItemCode(), Toast.LENGTH_SHORT).show();
+                               ((MainActivity)mcontext).DeleteItem(i.getItemCode());
+                               break;
+                           case R.id.cardview_menu_change_qty:
+                               final Dialog dialog=new Dialog(mcontext);
+                               dialog.setTitle("Item "+i.getItemCode());
+                               dialog.setContentView(R.layout.dialogue_cardview);
+                               final EditText editTextQty=dialog.findViewById(R.id.dialog_qty_editText);
+                               Button btn=dialog.findViewById(R.id.dialog_btn);
+                               btn.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       int qty=Integer.parseInt(editTextQty.getText().toString());
+                                       ((MainActivity)mcontext).ChangeQty(i.getItemCode(),qty);
+                                       dialog.dismiss();
+                                   }
+                               });
+                               dialog.setCancelable(true);
+                               dialog.setCanceledOnTouchOutside(true);
+                               dialog.show();
+                               dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
-            }
-        });
+
+                               break;
+
+                       }
+                       return  true;
+                   }
+               });
+               menu.show();
+           }
+       });
+
+
+
+
+
+
+
 
 
     }
@@ -100,17 +110,26 @@ dialog.dismiss();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemName,itemPrice,itemQuantity,itmCode;
+        private TextView itemName, itemPrice, itemQuantity, itmCode;
         private CardView CardView;
+        private Button ContextBtn;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName=itemView.findViewById(R.id.cardView_ItemName);
-            itemQuantity=itemView.findViewById(R.id.cardView_itemQuantity);
-            itmCode=itemView.findViewById(R.id.cardview_itmcode);
-            itemPrice=itemView.findViewById(R.id.cardView_itemPrice);
-            CardView=itemView.findViewById(R.id.cardView_root);
+            itemName = itemView.findViewById(R.id.cardView_ItemName);
+            itemQuantity = itemView.findViewById(R.id.cardView_itemQuantity);
+            itmCode = itemView.findViewById(R.id.cardview_itmcode);
+            itemPrice = itemView.findViewById(R.id.cardView_itemPrice);
+            CardView = itemView.findViewById(R.id.cardView_root);
+            ContextBtn=itemView.findViewById(R.id.cardView_buttonOptions);
 
 
         }
+
+
     }
+
+
 }
+
+

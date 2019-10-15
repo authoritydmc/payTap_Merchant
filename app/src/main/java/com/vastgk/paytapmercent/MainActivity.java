@@ -130,7 +130,7 @@ void DeleteItem(String itemCode)
         itemView.setAdapter(myadapter);
 
 
-        DetailsTxtView.setText("Total Item " + details.size() + " Amounting Rs. " +String.format("%.2f",TOTAL_PRICE));
+        DetailsTxtView.setText("Total Item " + details.size() + String.format("%50s \u20B9%.2f","Amounting",TOTAL_PRICE));
     }
 
     private void RUNSCAN() {
