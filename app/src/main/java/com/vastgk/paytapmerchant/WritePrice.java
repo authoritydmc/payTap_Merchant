@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -131,6 +133,8 @@ dialog.dismiss();
         if (ndefMessage != null) {
             nfcManager.writeTag(currentTag, ndefMessage);
             dialog.dismiss();
+            ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+            toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,150);
             Toast.makeText(this, "Tag Written", Toast.LENGTH_SHORT).show();
             Snackbar.make(findViewById(R.id.Write_price_root),"Tag Written",Snackbar.LENGTH_LONG).show();
        finish();
