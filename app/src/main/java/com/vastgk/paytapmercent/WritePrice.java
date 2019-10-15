@@ -55,7 +55,6 @@ private TextView dataTxtView;
 
 
 
-        Toast.makeText(this, "Touch the NFC tag to complete the writing", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -63,7 +62,8 @@ private TextView dataTxtView;
         super.onResume();
 
         if (nfcAdapter!=null && nfcAdapter.isEnabled())
-        {
+        {   Toast.makeText(this, "Touch the NFC tag to complete the writing", Toast.LENGTH_LONG).show();
+
             startForegroundWriting();
         }else
         {if (nfcAdapter==null)
