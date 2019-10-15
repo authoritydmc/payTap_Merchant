@@ -136,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
                 float pr = random.nextFloat()*100;
                 String price=String.format("%.2f",pr);
                 TOTAL_PRICE+=Float.valueOf(price);
-                ItemDetails itemDetails=new ItemDetails("URL",ITEM_CODE,ITEM_CODE,price,1);
+                String itemName=ITEM_CODE.equals("725272730706")?"Parle G":ITEM_CODE;
+                ItemDetails itemDetails=new ItemDetails("URL",itemName,ITEM_CODE,price,1);
                 Items.put(ITEM_CODE,itemDetails);
 
 
