@@ -61,22 +61,21 @@ private TextView dataTxtView;
     @Override
     protected void onResume() {
         super.onResume();
-        NfcManager nfcManager= (NfcManager) this.getSystemService(Context.NFC_SERVICE);
-        NfcAdapter nfcAdapter=nfcManager.getDefaultAdapter();
+
         if (nfcAdapter!=null && nfcAdapter.isEnabled())
         {
             startForegroundWriting();
         }else
         {if (nfcAdapter==null)
-            Toast.makeText(this, "NFC not Supported in your Phone", Toast.LENGTH_LONG).show();
-        else
+            Toast.makeText(this, "NFC not Supported in your Phone\nClosing in 10 seconds", Toast.LENGTH_LONG).show();
+        else if (!nfcAdapter.isEnabled())
             Toast.makeText(this, "Enable NFC in Your Phone", Toast.LENGTH_LONG).show();
         new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     finish();
                 }
-            },5000);
+            },10000);
         }
 
 
