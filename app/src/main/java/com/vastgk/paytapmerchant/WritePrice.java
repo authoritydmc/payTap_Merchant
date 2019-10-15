@@ -1,4 +1,4 @@
-package com.vastgk.paytapmercent;
+package com.vastgk.paytapmerchant;
 
 import androidx.appcompat.app.AppCompatActivity;
 

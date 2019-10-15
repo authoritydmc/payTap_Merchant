@@ -1,4 +1,4 @@
-package com.vastgk.paytapmercent;
+package com.vastgk.paytapmerchant;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

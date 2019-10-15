@@ -1,4 +1,4 @@
-package com.vastgk.paytapmercent;
+package com.vastgk.paytapmerchant;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
