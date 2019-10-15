@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Random;
 
@@ -32,14 +34,12 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE_CAMERA = 9;
     private static  double TOTAL_PRICE = 0.0;
-
-    HashMap<String, Double> ItemMap_Price = new HashMap<>();
-    HashMap<String, Integer> ItemMap_Quan = new HashMap<>();
+    private HashMap<String,ItemDetails> Items=new HashMap<>();//Store each info
     private final int CODE_SCAN = 7;
 
     private static final String TAG = "RAAJ";
     Random random = new Random();
-    ListView itemView;
+    RecyclerView itemView;
     TextView DetailsTxtView;
     Button scanCode, writePrice;
     BottomNavigationView bottomNavigationView;
@@ -99,23 +99,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     void Refreshdata() {
-        ArrayList<String> details = new ArrayList<>();
-        double total_price = 0.0;
-        for (String it : ItemMap_Price.keySet()) {
-            total_price += (ItemMap_Quan.get(it) * ItemMap_Price.get(it));
-            String st = "Item:" + it
-                    + "\tPrice: "
-                    + ItemMap_Quan.get(it) + "x" + ItemMap_Price.get(it)
-                    + "=" + (ItemMap_Quan.get(it) * ItemMap_Price.get(it));
-            details.add(st);
+        ArrayList<ItemDetails> details = new ArrayList<>();
+        for(String codes:Items.keySet())
+        {
+
+            details.add(Items.get(codes));
+
         }
-        TOTAL_PRICE=total_price;
+        ItemRecyclerAdapter myadapter=new ItemRecyclerAdapter(details);
+        itemView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        itemView.setHasFixedSize(true);
+        itemView.setAdapter(myadapter);
 
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, details);
-        itemView.setAdapter(arrayAdapter);
-
-        DetailsTxtView.setText("Total Item " + details.size() + " Amounting Rs. " + total_price);
+        DetailsTxtView.setText("Total Item " + details.size() + " Amounting Rs. " +String.format("%.2f",TOTAL_PRICE));
     }
 
     private void RUNSCAN() {
@@ -131,16 +128,18 @@ public class MainActivity extends AppCompatActivity {
             String ITEM_CODE = data.getStringExtra("code");
 
 
-            if (ItemMap_Price.containsKey(ITEM_CODE)) {
+            if (Items.containsKey(ITEM_CODE)) {
+                Items.get(ITEM_CODE).setItemQuantity(Items.get(ITEM_CODE).getItemQuantity()+1);
+                TOTAL_PRICE+=Float.valueOf(Items.get(ITEM_CODE).getItemPrice());
 
-                ItemMap_Quan.put(ITEM_CODE, ItemMap_Quan.get(ITEM_CODE) + 1);
-                // ItemMap_Price.put(ITEM_CODE,ItemMap_Price.get(ITEM_CODE)*2);
+            } else {//TODO fetch Details and Put from firebase
+                float pr = random.nextFloat()*100;
+                String price=String.format("%.2f",pr);
+                TOTAL_PRICE+=Float.valueOf(price);
+                ItemDetails itemDetails=new ItemDetails("URL",ITEM_CODE,ITEM_CODE,price,1);
+                Items.put(ITEM_CODE,itemDetails);
 
 
-            } else {
-                Double pr = random.nextDouble() * 50;
-                ItemMap_Quan.put(ITEM_CODE, 1);
-                ItemMap_Price.put(ITEM_CODE, Double.valueOf(String.format("%.2f", pr)));
             }
             Refreshdata();
 
