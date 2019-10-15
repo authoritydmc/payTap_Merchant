@@ -28,13 +28,11 @@
         />
 
     <TextView
-        android:id="@+id/cardView_itemCode"
-        android:layout_width="110dp"
-        android:layout_height="29dp"
-        android:layout_margin="4dp"
-android:textSize="20sp"
-        android:text="ItemCode"
-    />
+        android:id="@+id/cardview_itmqty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ItemCode:"
+        android:textSize="20sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

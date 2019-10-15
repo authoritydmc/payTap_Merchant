@@ -31,7 +31,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemName.setText("Item:"+items.get(position).getItemName());
         holder.itemPrice.setText("Price:"+items.get(position).getItemPrice());
-        holder.itemCode.setText("itemCode:"+items.get(position).getItemCode());
+        holder.itmQty.setText("itemCode:"+items.get(position).getItemCode());
         holder.itemQuantity.setText("QTY:"+items.get(position).getItemQuantity());
 
 
@@ -44,13 +44,12 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemName,itemCode,itemPrice,itemQuantity;
+        private TextView itemName,itemPrice,itemQuantity,itmQty;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemName=itemView.findViewById(R.id.cardView_ItemName);
             itemQuantity=itemView.findViewById(R.id.cardView_itemQuantity);
-            itemCode=itemView.findViewById(R.id.cardView_itemCode);
-
+            itmQty=itemView.findViewById(R.id.cardview_itmqty);
             itemPrice=itemView.findViewById(R.id.cardView_itemPrice);
 
 
