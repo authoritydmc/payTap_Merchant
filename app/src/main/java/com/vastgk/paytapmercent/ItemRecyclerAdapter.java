@@ -53,8 +53,10 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
                 dialog.setContentView(R.layout.dialogue_cardview);
                 dialog.setCancelable(true);
                 final EditText editQty=dialog.findViewById(R.id.dialog_qty_editText);
+                final TextView del=dialog.findViewById(R.id.dialog_delete);
+                del.setText("Delete "+i.getItemCode());
                 //editQty.setText(i.getItemQuantity());
-                ((TextView)dialog.findViewById(R.id.dialog_delete)).setOnClickListener(new View.OnClickListener() {
+                del.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(mcontext, "Deleted"+i.getItemCode(), Toast.LENGTH_SHORT).show();

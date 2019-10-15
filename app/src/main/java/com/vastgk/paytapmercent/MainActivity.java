@@ -148,7 +148,6 @@ void DeleteItem(String itemCode)
 
             if (Items.containsKey(ITEM_CODE)) {
                 Items.get(ITEM_CODE).setItemQuantity(Items.get(ITEM_CODE).getItemQuantity()+1);
-                TOTAL_PRICE+=Float.valueOf(Items.get(ITEM_CODE).getItemPrice());
 
             } else {//TODO fetch Details and Put from firebase
                 float pr = random.nextFloat()*100;
