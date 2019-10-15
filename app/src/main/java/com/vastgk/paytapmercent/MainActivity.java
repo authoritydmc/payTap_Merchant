@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void write() {
-        startActivity(new Intent(MainActivity.this,WritePrice.class).putExtra(WritePrice.TOTAL_AMOUNT_TO_WRITE,TOTAL_PRICE));
+        startActivity(new Intent(MainActivity.this,WritePrice.class).putExtra(WritePrice.TOTAL_AMOUNT_TO_WRITE,String.format("%.2f",TOTAL_PRICE)));
     }
 
     private void scan() {
@@ -96,7 +96,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
+void ChangeQty(String itemCode,int qty)
+{
+    if (qty==0)
+    {
+        Items.remove(itemCode);
+    }else
+    {
+        Items.get(itemCode).setItemQuantity(qty);
+    }
+    Refreshdata();
+}
+void DeleteItem(String itemCode)
+{
+    ChangeQty(itemCode,0);
+}
 
     void Refreshdata() {
         ArrayList<ItemDetails> details = new ArrayList<>();
@@ -106,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             details.add(Items.get(codes));
 
         }
-        ItemRecyclerAdapter myadapter=new ItemRecyclerAdapter(details);
+        ItemRecyclerAdapter myadapter=new ItemRecyclerAdapter(MainActivity.this,details);
         itemView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         itemView.setHasFixedSize(true);
         itemView.setAdapter(myadapter);

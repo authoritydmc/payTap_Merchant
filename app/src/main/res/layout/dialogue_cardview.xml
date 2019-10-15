@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_height="100dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:text="Delete"
+        android:id="@+id/dialog_delete"/>
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+   <LinearLayout
+       android:layout_marginStart="10dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Quantity:"
+           android:textSize="20sp"/>
+       <View
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="8"/>
+       <EditText
+           android:layout_width="150dp"
+           android:layout_marginEnd="10dp"
+           android:layout_height="wrap_content"
+           android:hint="Enter Quantity "
+           android:inputType="numberSigned"
+           android:id="@+id/dialog_qty_editText"
+           android:layout_weight="1"/>
+
+
+
+   </LinearLayout>
+
+   </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
