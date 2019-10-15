@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Random;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -114,10 +115,13 @@ void DeleteItem(String itemCode)
 
     void Refreshdata() {
         ArrayList<ItemDetails> details = new ArrayList<>();
+        TOTAL_PRICE=0.0;
+
         for(String codes:Items.keySet())
         {
 
             details.add(Items.get(codes));
+            TOTAL_PRICE+=Items.get(codes).getItemQuantity()*Float.valueOf( Items.get(codes).getItemPrice());
 
         }
         ItemRecyclerAdapter myadapter=new ItemRecyclerAdapter(MainActivity.this,details);
