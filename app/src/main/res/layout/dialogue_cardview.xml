@@ -28,6 +28,7 @@
            android:layout_marginEnd="10dp"
            android:layout_height="wrap_content"
            android:hint="Enter Quantity "
+           android:maxLength="3"
            android:inputType="numberSigned"
            android:id="@+id/dialog_qty_editText"
            android:layout_weight="1"/>

@@ -73,6 +73,11 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
                                    @Override
                                    public void onClick(View v) {
                                        int qty=Integer.parseInt(editTextQty.getText().toString());
+                                       if (qty<0)
+                                       {editTextQty.setError("Quantity Can't be Negative");
+                                           Toast.makeText(mcontext, "Qty<0 error", Toast.LENGTH_SHORT).show();
+                                           return;
+                                       }
                                        ((MainActivity)mcontext).ChangeQty(i.getItemCode(),qty);
                                        dialog.dismiss();
                                    }
