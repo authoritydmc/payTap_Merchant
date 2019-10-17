@@ -40,7 +40,7 @@ public class WritePrice extends AppCompatActivity {
     private  String datas;
     public static String TOTAL_AMOUNT_TO_WRITE="amount_total_write";
     private String VENDOR_NAME="PAYTAP ";
-    private String VENDORD_ID="VEN4578";
+    private String VENDORD_ID="VEN007";
 private TextView dataTxtView;
 private NFCManager nfcManager;
 private  NdefMessage ndefMessage;
