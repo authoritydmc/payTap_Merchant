@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.skyfishjy.library.RippleBackground;
 
 import org.json.JSONObject;
 
@@ -54,7 +55,6 @@ Tag currentTag;
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dataTxtView=findViewById(R.id.write_nfc_data_txtView);
         nfcManager=new NFCManager(this);
-
                 Map map=new LinkedHashMap();
         map.put("VendorName",VENDOR_NAME);
         map.put("VendorId",VENDORD_ID);
@@ -85,6 +85,7 @@ Tag currentTag;
     @Override
     protected void onResume() {
         super.onResume();
+        startNfcAnimation(true);
         try {
             nfcManager.verifyNFC();
             //nfcMger.enableDispatch();
@@ -137,10 +138,17 @@ dialog.dismiss();
             toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,150);
             Toast.makeText(this, "Tag Written", Toast.LENGTH_SHORT).show();
             Snackbar.make(findViewById(R.id.Write_price_root),"Tag Written",Snackbar.LENGTH_LONG).show();
-       finish();
+       startNfcAnimation(false);
+            finish();
         } else {
             // Handle intent
 
         }
+    }
+    private void startNfcAnimation(boolean state) {
+        final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
+        if (state)
+            rippleBackground.startRippleAnimation();
+        else rippleBackground.stopRippleAnimation();
     }
 }
