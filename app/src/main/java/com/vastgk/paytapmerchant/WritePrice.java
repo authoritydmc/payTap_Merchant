@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.ToneGenerator;
@@ -100,24 +101,15 @@ Tag currentTag;
         catch(NFCManager.NFCNotSupported nfcnsup) {
             Snackbar snackbar = Snackbar
                     .make(findViewById(R.id.Write_price_root),"NFC not Supported",Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Close", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            finish();
-                        }
-                    });
+                    .setAction("Close",(v)->finish());
             snackbar.show();
         }
         catch(NFCManager.NFCNotEnabled nfcnEn) {
 
             Snackbar snackbar = Snackbar
                     .make(findViewById(R.id.Write_price_root),"NFC not enabled ",Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Open Settings", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
-                        }
-                    });
+                    .setAction("Open Settings", (v)->
+                            startActivity(new Intent(Settings.ACTION_NFC_SETTINGS)));
             snackbar.show();
         }
     }
@@ -130,12 +122,22 @@ Tag currentTag;
         currentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (ndefMessage != null) {
             nfcManager.writeTag(currentTag, ndefMessage);
-            MediaPlayer mediaPlayer=MediaPlayer.create(this,R.raw.completed);
+            MediaPlayer mediaPlayer=MediaPlayer.create(this,R.raw.payment_unlock);
             mediaPlayer.start();
-            Toast.makeText(this, "Tag Written", Toast.LENGTH_SHORT).show();
+            nfc_status.setText("Done Writing");
+            nfc_status.setTextColor(Color.rgb(0,100,0));
             Snackbar.make(findViewById(R.id.Write_price_root),"Tag Written",Snackbar.LENGTH_LONG).show();
        startNfcAnimation(false);
-            finish();
+
+            new Handler().postDelayed(()->{
+
+                finish();
+            },2000);
+
+
+
+
+
         } else {
             // Handle intent
 
