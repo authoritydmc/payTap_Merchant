@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.ToneGenerator;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -41,10 +42,9 @@ public class WritePrice extends AppCompatActivity {
     public static String TOTAL_AMOUNT_TO_WRITE="amount_total_write";
     private String VENDOR_NAME="PAYTAP ";
     private String VENDORD_ID="VEN007";
-private TextView dataTxtView;
+private TextView nfc_status;
 private NFCManager nfcManager;
 private  NdefMessage ndefMessage;
-private ProgressDialog dialog;
 Tag currentTag;
     private String CUSTOMER_ID="cust565447"; //TODO users mobile number
 
@@ -53,23 +53,22 @@ Tag currentTag;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_price);
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        dataTxtView=findViewById(R.id.write_nfc_data_txtView);
+       nfc_status=findViewById(R.id.write_nfc_status);
         nfcManager=new NFCManager(this);
                 Map map=new LinkedHashMap();
         map.put("vendorname",VENDOR_NAME);
         map.put("vendorid",VENDORD_ID);
         map.put("amount",getIntent().getStringExtra(TOTAL_AMOUNT_TO_WRITE));
         map.put("custid",CUSTOMER_ID);
+        map.put("paid","false");
         JSONObject data=new JSONObject(map);
         datas=data.toString();
         ndefMessage=nfcManager.createTextMessage(datas);
 
-        dataTxtView.setText(datas.toString());
+        nfc_status.setText("\tWaiting ...");
         if(ndefMessage!=null)
         {
-          dialog=new ProgressDialog(this);
-          dialog.setMessage("Tag NFC to Write");
-          dialog.show();
+            Toast.makeText(this, "Tag an NFC tag to write", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -107,7 +106,6 @@ Tag currentTag;
                             finish();
                         }
                     });
-dialog.dismiss();
             snackbar.show();
         }
         catch(NFCManager.NFCNotEnabled nfcnEn) {
@@ -120,7 +118,6 @@ dialog.dismiss();
                             startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
                         }
                     });
-dialog.dismiss();
             snackbar.show();
         }
     }
@@ -133,9 +130,8 @@ dialog.dismiss();
         currentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (ndefMessage != null) {
             nfcManager.writeTag(currentTag, ndefMessage);
-            dialog.dismiss();
-            ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
-            toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,150);
+            MediaPlayer mediaPlayer=MediaPlayer.create(this,R.raw.completed);
+            mediaPlayer.start();
             Toast.makeText(this, "Tag Written", Toast.LENGTH_SHORT).show();
             Snackbar.make(findViewById(R.id.Write_price_root),"Tag Written",Snackbar.LENGTH_LONG).show();
        startNfcAnimation(false);

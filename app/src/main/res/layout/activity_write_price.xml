@@ -8,20 +8,7 @@
     android:fitsSystemWindows="true"
     android:id="@+id/Write_price_root">
 
-    <TextView
-        android:id="@+id/write_nfc_data_txtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="TOTAL AMOUNT TO BE WRITTEN"
-        android:textSize="25sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+
     <com.skyfishjy.library.RippleBackground
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -33,6 +20,16 @@
         app:rb_rippleAmount="4"
         app:rb_duration="3000"
         app:rb_scale="6">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:id="@+id/write_nfc_status"
+            android:layout_below="@id/centerImage"/>
         <ImageView
             android:layout_width="64dp"
             android:layout_height="64dp"

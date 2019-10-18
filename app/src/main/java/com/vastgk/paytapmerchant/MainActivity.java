@@ -14,6 +14,7 @@ import android.Manifest;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.CAMERA},
                         MY_REQUEST_CODE_CAMERA);
         } else {
-            RUNSCAN();
+                       RUNSCAN();
         }
 
 
