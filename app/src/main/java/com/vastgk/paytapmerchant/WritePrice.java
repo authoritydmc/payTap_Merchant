@@ -66,10 +66,10 @@ Tag currentTag;
         datas=data.toString();
         ndefMessage=nfcManager.createTextMessage(datas);
 
-        nfc_status.setText("\tWaiting ...");
+        nfc_status.setText("\tTouch the NFC tag  ...");
         if(ndefMessage!=null)
         {
-            Toast.makeText(this, "Tag an NFC tag to write", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "Tag an NFC tag to write", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -100,9 +100,13 @@ Tag currentTag;
         }
         catch(NFCManager.NFCNotSupported nfcnsup) {
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.Write_price_root),"NFC not Supported",Snackbar.LENGTH_INDEFINITE)
+                    .make(findViewById(R.id.Write_price_root),"NFC not Supported ",Snackbar.LENGTH_INDEFINITE)
                     .setAction("Close",(v)->finish());
             snackbar.show();
+            new Handler().postDelayed(()->{
+                finish();
+            },10000);
+
         }
         catch(NFCManager.NFCNotEnabled nfcnEn) {
 

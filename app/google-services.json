@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "739989977194",
-    "firebase_url": "https://paytap-mercent.firebaseio.com",
-    "project_id": "paytap-mercent",
-    "storage_bucket": "paytap-mercent.appspot.com"
+    "project_number": "46455128119",
+    "firebase_url": "https://paytap-mercent-acae1.firebaseio.com",
+    "project_id": "paytap-mercent-acae1",
+    "storage_bucket": "paytap-mercent-acae1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:739989977194:android:7bb62fd32dd68b38f4b213",
+        "mobilesdk_app_id": "1:46455128119:android:5f672538e06a8d51763fb2",
         "android_client_info": {
           "package_name": "com.vastgk.paytapmercent"
         }
       },
       "oauth_client": [
         {
-          "client_id": "739989977194-48u44umhsdtllj6iemm8h3fi9nk2abpm.apps.googleusercontent.com",
+          "client_id": "46455128119-dc5di8gi9sg5u03ndgj41fnlqa29j30h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.vastgk.paytapmercent",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "739989977194-2crl2aepot4stg212gvt2p8lkdroe1rc.apps.googleusercontent.com",
+          "client_id": "46455128119-8r09udci6qhbvmlc6sr6oapq0mg6bje4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCZiY_28NBG1G9_jA0cm-fLoe8F59fKZbU"
+          "current_key": "AIzaSyB4NZBH14AjDAPqYEMmzNY7erV4wF8_T1U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "739989977194-2crl2aepot4stg212gvt2p8lkdroe1rc.apps.googleusercontent.com",
+              "client_id": "46455128119-8r09udci6qhbvmlc6sr6oapq0mg6bje4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

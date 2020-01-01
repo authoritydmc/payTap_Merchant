@@ -50,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //startActivity(new Intent(MainActivity.this,com.vastgk.updateapp.UpdateApp.class));
         itemView = findViewById(R.id.lstViewItems);
         DetailsTxtView = findViewById(R.id.txtView_DetailsItem);
 
+        com.vastgk.updateapp.UpdateApp.checkupdate(this,BuildConfig.VERSION_NAME,true);
         bottomNavigationView = findViewById(R.id.bottomnavigation);
 
         //bottom Navigation ----------RK-------------
